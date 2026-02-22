@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agvallkey - Agent Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-left">
+                <!-- Overlay layer and background image styling handled in CSS -->
+                <div class="logo-box">
+                    <span class="logo-text">agvallkey</span><span class="logo-dot"
+                        style="color:#000; font-size:24px;">.com</span>
+                </div>
+            </div>
+            <div class="login-right">
+                <h2 class="login-title">Agent login</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="input-group validate-group">
+                        <input type="text" id="validateCode" placeholder="Validate Code" required autocomplete="off">
+                        <div class="captcha-box" id="captchaBox">6621</div>
+                    </div>
+                    <button type="submit" class="btn-login" id="loginBtn">Login <i
+                            class="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    <div id="errorMsg" class="error-msg"></div>
+                </form>
+            </div>
+        </div>
+        <div class="login-footer">
+            <a href="#" class="whatsapp-btn"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+
+</html>

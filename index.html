@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agvallkey - Dashboard</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        if (localStorage.getItem("agent_auth") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="logo-area">
+                <span class="logo-text">agvallkey</span>
+                <span class="logo-dot">.com</span>
+            </div>
+            <div class="user-info-area">
+                <div class="badge-group">
+                    <span class="badge-dark">agent</span>
+                    <span class="user-name">mdshaker</span>
+                </div>
+                <div class="badge-group">
+                    <span class="badge-dark">Main</span>
+                    <span class="balance">PBU 0.00</span>
+                </div>
+                <button class="icon-btn header-refresh"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="view-downline"><a href="#">Downline List</a></li>
+                <li class="nav-item" data-target="view-account"><a href="#">My Account</a></li>
+                <li class="dropdown">
+                    <a href="#">My Report <i class="fa-solid fa-caret-down"></i></a>
+                </li>
+                <li class="nav-item" data-target="view-betlist"><a href="#">BetList</a></li>
+                <li><a href="#">BetListLive</a></li>
+                <li class="nav-item" data-target="view-risk"><a href="#">Risk Management</a></li>
+                <li class="nav-item" data-target="view-banking"><a href="#">Banking</a></li>
+                <li><a href="#">Block Market</a></li>
+                <li class="nav-item" data-target="view-admin"><a href="#">Admin Setting</a></li>
+                <li><a href="#">Result</a></li>
+            </ul>
+            <div class="nav-right">
+                <span class="timezone">Time Zone : GMT+5:30</span>
+                <a href="#" id="logoutBtn" class="logout-link">Logout <i
+                        class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </nav>
+
+        <!-- News Ticker -->
+        <div class="news-bar">
+            <div class="news-label"><i class="fa-solid fa-microphone"></i> News</div>
+            <div class="news-ticker">
+                <marquee behavior="scroll" direction="left" scrollamount="4">Welcome to agvallkey dashboard. Keep
+                    exploring the new user-friendly interface!</marquee>
+            </div>
+        </div>
+
+        <!-- View Container -->
+        <div class="views-container" id="viewsContainer">
+            <!-- View: Downline -->
+            <div id="view-downline" class="view-panel active">
+                <!-- Toolbar area -->
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" placeholder="Find member...">
+                        </div>
+                        <button class="btn btn-primary">Search</button>
+                        <div class="status-filter">
+                            <label>Status</label>
+                            <select>
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn btn-secondary" id="addUserBtn"><i class="fa-solid fa-user-plus"></i> Add
+                            User</button>
+                        <button class="icon-btn border-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="card">
+                        <div class="card-title">Total Balance</div>
+                        <div class="card-value">PBU 1.98</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Total Exposure</div>
+                        <div class="card-value text-danger">PBU 0.00</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Total Avail. bal.</div>
+                        <div class="card-value">PBU 1.98</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Balance</div>
+                        <div class="card-value">PBU 0.00</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Available Balance</div>
+                        <div class="card-value">PBU 1.98</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Total Player Balance</div>
+                        <div class="card-value">PBU 1.98</div>
+                    </div>
+                </div>
+
+                <!-- Main Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr .No.</th>
+                                <th>Account</th>
+                                <th>Website Name</th>
+                                <th>Credit Ref.</th>
+                                <th>Balance</th>
+                                <th>Exposure</th>
+                                <th>Avail. bal.</th>
+                                <th>Exposure Limit</th>
+                                <th>Reference P/L</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="downlineTableBody">
+                            <!-- Data will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- View: My Account -->
+            <div id="view-account" class="view-panel">
+                <div class="panel-header">
+                    <h2>My Account Summary</h2>
+                </div>
+                <div class="account-grid">
+                    <div class="ac-card">
+                        <h3>Profile Details</h3>
+                        <p>Username: mdshaker</p>
+                        <p>Role: Main Agent</p>
+                    </div>
+                    <div class="ac-card">
+                        <h3>Account Statement</h3><button class="btn btn-secondary w-100">View Log</button>
+                    </div>
+                    <div class="ac-card">
+                        <h3>Activity Log</h3><button class="btn btn-secondary w-100">View Sessions</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View: BetList -->
+            <div id="view-betlist" class="view-panel">
+                <div class="panel-header">
+                    <h2>BetList Tracker</h2>
+                </div>
+                <div class="toolbar" style="margin-bottom:20px; box-shadow:none; border-bottom:0;">
+                    <div class="toolbar-left">
+                        <div class="status-filter">
+                            <select>
+                                <option>Cricket</option>
+                                <option>Tennis</option>
+                                <option>Soccer</option>
+                                <option>Casino</option>
+                            </select>
+                        </div>
+                        <div class="status-filter">
+                            <select>
+                                <option>Settled</option>
+                                <option>Unsettled</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary">Load Bets</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <p style="padding: 20px; text-align:center; color:#666;">No Active Bets Found</p>
+                </div>
+            </div>
+
+            <!-- View: Risk -->
+            <div id="view-risk" class="view-panel">
+                <div class="panel-header">
+                    <h2>Risk Management Board</h2>
+                </div>
+                <div class="toolbar" style="margin-bottom:20px; box-shadow:none; border-bottom:0;">
+                    <div class="toolbar-left">
+                        <button class="btn btn-primary">Top 10 Exposure Players</button>
+                        <button class="btn btn-secondary" style="margin-left: 10px;">Sports Book Match</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <p style="padding: 20px; text-align:center; color:#666; background: #fff; border-radius: 4px;">
+                        Exposure Limit Safe. No elevated risks detected at this time.</p>
+                </div>
+            </div>
+
+            <!-- View: Banking -->
+            <div id="view-banking" class="view-panel">
+                <div class="panel-header">
+                    <h2>Banking Operations</h2>
+                </div>
+                <div class="table-container" style="margin-top: 20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Available Balance</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="account-badge">CL</span> arif0</td>
+                                <td>0.00</td>
+                                <td><button class="btn btn-primary btn-sm">Deposit/Withdraw</button></td>
+                            </tr>
+                            <tr>
+                                <td><span class="account-badge">CL</span> ayon000</td>
+                                <td>0.85</td>
+                                <td><button class="btn btn-primary btn-sm">Deposit/Withdraw</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- View: Admin -->
+            <div id="view-admin" class="view-panel">
+                <div class="panel-header">
+                    <h2>Admin General Setup</h2>
+                </div>
+                <div class="admin-grid">
+                    <div class="ac-card">
+                        <i class="fa-solid fa-key icon-lg"></i>
+                        <h3>Change Password</h3>
+                        <p style="font-size:13px; color:#666; margin-bottom:15px;">Manage agent security credentials</p>
+                        <button class="btn btn-primary w-100">Update</button>
+                    </div>
+                    <div class="ac-card">
+                        <i class="fa-solid fa-users icon-lg"></i>
+                        <h3>Search Users</h3>
+                        <p style="font-size:13px; color:#666; margin-bottom:15px;">Advanced user lookup across downline
+                        </p>
+                        <button class="btn btn-secondary w-100">Open</button>
+                    </div>
+                    <div class="ac-card">
+                        <i class="fa-solid fa-gamepad icon-lg"></i>
+                        <h3>Match Listing</h3>
+                        <p style="font-size:13px; color:#666; margin-bottom:15px;">Toggle Active/Inactive Match markets
+                        </p>
+                        <button class="btn btn-secondary w-100">Manage</button>
+                    </div>
+                    <div class="ac-card">
+                        <i class="fa-solid fa-eye-slash icon-lg"></i>
+                        <h3>Surveillance</h3>
+                        <p style="font-size:13px; color:#666; margin-bottom:15px;">Real-time downline activity
+                            monitoring</p>
+                        <button class="btn btn-secondary w-100">Launch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add User Modal -->
+        <div class="modal-overlay" id="addUserModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add User</h2>
+                    <button class="close-btn" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="username" required placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="password" required placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="confirmPassword" required placeholder="Confirm password">
+                        </div>
+                        <div class="form-group">
+                            <label>Time Zone</label>
+                            <select id="timeZone">
+                                <option>GMT+5:30</option>
+                                <option>GMT+0:00</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Commission</label>
+                            <input type="number" id="commission" value="0.00" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Exposure Limit</label>
+                            <input type="number" id="exposureLimit" value="1000.00" step="1.00">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Create User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firebase configuration & main script -->
+        <script type="module" src="script.js"></script>
+</body>
+
+</html>

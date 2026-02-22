@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Stadium background via gradient matching the image */
+    background: radial-gradient(circle at center, #1a2332 0%, #0d1118 100%), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    background-blend-mode: overlay;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login-card {
+    display: flex;
+    width: 760px;
+    height: 480px;
+    background-color: #242424;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.login-left {
+    width: 50%;
+    /* Soccer background with orange gradient override */
+    background: linear-gradient(rgba(240, 160, 20, 0.85), rgba(240, 160, 20, 0.85)), url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-box {
+    font-weight: 700;
+    font-size: 38px;
+    color: #000;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.logo-text {
+    font-style: italic;
+    background: #000;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.login-right {
+    width: 50%;
+    padding: 60px 50px;
+    background-color: #262626;
+    /* Dark grey */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 15px;
+    background-color: #e4e9ef;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    font-weight: bold;
+}
+
+.input-group input:focus {
+    box-shadow: inset 0 0 0 2px #f8a01b;
+}
+
+.validate-group {
+    display: flex;
+    position: relative;
+}
+
+.validate-group input {
+    padding-right: 80px;
+}
+
+.captcha-box {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 900;
+    color: #333;
+    background-color: transparent;
+    padding: 0 10px;
+    letter-spacing: 3px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(180deg, #FDB813 0%, #F58612 100%);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background: linear-gradient(180deg, #F58612 0%, #E07102 100%);
+}
+
+.error-msg {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 15px;
+    text-align: center;
+    min-height: 18px;
+}
+
+.login-footer {
+    width: 760px;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.whatsapp-btn {
+    color: #fff;
+    font-size: 32px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.whatsapp-btn:hover {
+    color: #25D366;
+}
